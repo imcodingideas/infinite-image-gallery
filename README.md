@@ -1,5 +1,7 @@
 # Unsplash Image Gallery
 
+Gallery that displays images from Unsplash using their API, with an Infinite Scroll.
+
 **Important**: Make sure to add your own [Unsplash API Key](https://unsplash.com/developers) to a `.env` file.
 
 - Copy `.env.example` to `.env`
@@ -23,6 +25,13 @@ yarn install
 yarn dev
 ```
 
-Open your browser.
+If you want to run the website locally, make sure you open your browser.
 
-https://infinite-image-gallery.localhost:9002/
+https://infinite-image-gallery.localhost:9002
+
+## Built With
+
+* [ReactJS](https://github.com/facebook/react) - The web framework used
+* [My Preferred React Setup](https://github.com/imcodingideas/preferred-react-setup) - My Preferred React Setup
+
+![screenshot](https://github.com/imcodingideas/infinite-image-gallery/raw/master/screenshot.png)
