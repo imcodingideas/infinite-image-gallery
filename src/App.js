@@ -1,7 +1,7 @@
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { hot } from 'react-hot-loader/root';
 import './styles.css';
@@ -11,19 +11,38 @@ const accessKey = process.env.UNSPLASH_ACCESS_KEY;
 export const App = hot(() => {
   const [images, setImages] = useState([]);
   const [page, setPage] = useState(1);
+  const [query, setQuery] = useState('');
 
-  function getPhotos() {
-    fetch(`https://api.unsplash.com/photos?client_id=${accessKey}&page=${page}`)
+  const getPhotos = useCallback(() => {
+    let apiUrl = `https://api.unsplash.com/photos?`;
+
+    if (query) {
+      apiUrl = `https://api.unsplash.com/search/photos?query=${query}`;
+    }
+
+    apiUrl += `&page=${page}`;
+    apiUrl += `&client_id=${accessKey}`;
+
+    fetch(apiUrl)
       .then(res => res.json())
       .then(data => {
-        setImages(currentImages => [...currentImages, ...data]);
+        const imagesFromApi = data.results ?? data;
+
+        if (page === 1) return setImages(imagesFromApi);
+
+        setImages(currentImages => [...currentImages, ...imagesFromApi]);
       });
+  }, [page, query]);
+
+  function searchPhotos(e) {
+    e.preventDefault();
+    setPage(1);
+    getPhotos();
   }
 
   useEffect(() => {
     getPhotos();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page]);
+  }, [getPhotos, page]);
 
   // return error if no accessKey
   if (!accessKey) {
@@ -38,13 +57,17 @@ export const App = hot(() => {
     <div className="app">
       <h1>Unsplash Image Gallery!</h1>
 
-      <form>
+      <form
+        values={query}
+        onSubmit={searchPhotos}
+        onChange={e => setQuery(e.target.value)}
+      >
         <input type="text" placeholder="Search Unsplash..." />
         <button type="button">Search</button>
       </form>
 
       <InfiniteScroll
-        dataLength={images.length} // This is important field to render the next data
+        dataLength={images.length}
         next={() => setPage(page => page + 1)}
         hasMore
         loader={<h4>Loading...</h4>}
