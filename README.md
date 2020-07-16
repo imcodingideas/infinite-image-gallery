@@ -1,12 +1,16 @@
-# My Preferred React Setup
+# Unsplash Image Gallery
 
-This is a small starter project for my new react applications. This is a very opinionated, and pull requests are welcome.
+**Important**: Make sure to add your own [Unsplash API Key](https://unsplash.com/developers) to a `.env` file.
+
+- Copy `.env.example` to `.env`
 
 ### Quickstart
 
 ```bash
 # clone the repository
-git clone git@github.com:imcodingideas/preferred-react-setup.git
+git clone git@github.com:imcodingideas/infinite-image-gallery.git
+./webpack/ssl/generate-keys-and-certs
+./webpack/ssl/trust-root-certificate
 ```
 
 ```bash
@@ -19,8 +23,6 @@ yarn install
 yarn dev
 ```
 
-To help us get started, I've add setup the project with the following files to start with:
+Open your browser.
 
-  - `./src/app/index.js`
-  - `./src/app/styles.css`
-
+https://infinite-image-gallery.localhost:9002/

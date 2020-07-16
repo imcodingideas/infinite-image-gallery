@@ -1,6 +1,6 @@
 #!/bin/sh
 
-PROJECT_NAME=preferred-react-setup.localhost
+PROJECT_NAME=infinite-image-gallery.localhost
 
 SSL_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 CA=$SSL_DIR/certificates

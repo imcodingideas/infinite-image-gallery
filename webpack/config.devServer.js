@@ -19,19 +19,19 @@ const attachHttpsIfDevelopment = env => {
       key: fs.readFileSync(
         path.resolve(
           __dirname,
-          'ssl/certificates/preferred-react-setup.localhost/site.key.pem'
+          'ssl/certificates/infinite-image-gallery.localhost/site.key.pem'
         )
       ),
       cert: fs.readFileSync(
         path.resolve(
           __dirname,
-          'ssl/certificates/preferred-react-setup.localhost/site.cert.pem'
+          'ssl/certificates/infinite-image-gallery.localhost/site.cert.pem'
         )
       ),
       ca: fs.readFileSync(
         path.resolve(
           __dirname,
-          'ssl/certificates/preferred-react-setup.localhost/ca-chain.cert.pem'
+          'ssl/certificates/infinite-image-gallery.localhost/ca-chain.cert.pem'
         )
       ),
     };
