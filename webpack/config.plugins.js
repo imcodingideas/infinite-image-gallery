@@ -1,5 +1,6 @@
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 const webpack = require('webpack');
 
 const plugins = env => [
@@ -9,6 +10,7 @@ const plugins = env => [
     filename: 'index.html',
     inject: 'body',
   }),
+  new Dotenv(),
   new webpack.HotModuleReplacementPlugin(),
 ];
 
